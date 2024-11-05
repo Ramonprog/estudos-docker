@@ -1,13 +1,23 @@
-FROM node 
+# Usa a imagem oficial do Node.js como base
+FROM node
 
-WORKDIR /app
+# Cria o diretório da aplicação dentro do contêiner
+RUN mkdir app
 
-COPY package*.json ./
+# Define o diretório de trabalho
+WORKDIR ./app
 
+# Copia o arquivo package.json para instalar dependências
+COPY package.json .
+
+# Instala as dependências
 RUN npm install
 
+# Copia o restante dos arquivos da aplicação para o contêiner
 COPY . .
 
-EXPOSE 3333
+# Expõe a porta que a aplicação usa
+EXPOSE 3001
 
-CMD ["node", "app.js"]
+# Comando para iniciar a aplicação
+CMD ["node", "index.js"]

@@ -1,0 +1,16 @@
+version: '3'  # Define a versão do Docker Compose
+
+services:
+  # Serviço principal da aplicação
+  example_docker:
+    container_name: example_docker  # Nome do contêiner
+    build: 
+      context: "./"  # Diretório onde o Dockerfile está localizado
+      dockerfile: dockerfile  # Nome do Dockerfile (pode ser customizado)
+      
+    ports:
+      - "3001:3001"  # Mapeia a porta 3001 do host para a porta 3001 do contêiner
+    
+    volumes:
+      # Sincroniza os arquivos do host com o diretório app no contêiner
+      - .:/app
